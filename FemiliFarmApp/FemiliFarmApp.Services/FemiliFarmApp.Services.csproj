@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FemiliFarmApp.DataAccess\FemiliFarmApp.DataAccess.csproj" />
+    <ProjectReference Include="..\FemiliFarmApp.DomainModels\FemiliFarmApp.DomainModels.csproj" />
+    <ProjectReference Include="..\FemiliFarmApp.RequestModels\FemiliFarmApp.RequestModels.csproj" />
+  </ItemGroup>
+
+</Project>

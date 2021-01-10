@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FemiliFarmApp.Web", "FemiliFarmApp.Web\FemiliFarmApp.Web.csproj", "{6720E47D-1613-465F-8B51-4D9DC9E390DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FemiliFarmApp.Services", "FemiliFarmApp.Services\FemiliFarmApp.Services.csproj", "{6A402364-E295-4537-B19E-9FFEBB9FD53A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FemiliFarmApp.DataAccess", "FemiliFarmApp.DataAccess\FemiliFarmApp.DataAccess.csproj", "{1B2F9CAE-437D-40D9-90A9-8D19D8F8FA74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FemiliFarmApp.DomainModels", "FemiliFarmApp.DomainModels\FemiliFarmApp.DomainModels.csproj", "{5D2C3030-D077-4A9E-99DF-EEA6CA83B494}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FemiliFarmApp.RequestModels", "FemiliFarmApp.RequestModels\FemiliFarmApp.RequestModels.csproj", "{7EFDA6AF-A7AB-4838-BE69-D8DAFB6DF26D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6720E47D-1613-465F-8B51-4D9DC9E390DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6720E47D-1613-465F-8B51-4D9DC9E390DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6720E47D-1613-465F-8B51-4D9DC9E390DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6720E47D-1613-465F-8B51-4D9DC9E390DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A402364-E295-4537-B19E-9FFEBB9FD53A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A402364-E295-4537-B19E-9FFEBB9FD53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A402364-E295-4537-B19E-9FFEBB9FD53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A402364-E295-4537-B19E-9FFEBB9FD53A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B2F9CAE-437D-40D9-90A9-8D19D8F8FA74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B2F9CAE-437D-40D9-90A9-8D19D8F8FA74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B2F9CAE-437D-40D9-90A9-8D19D8F8FA74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B2F9CAE-437D-40D9-90A9-8D19D8F8FA74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D2C3030-D077-4A9E-99DF-EEA6CA83B494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D2C3030-D077-4A9E-99DF-EEA6CA83B494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D2C3030-D077-4A9E-99DF-EEA6CA83B494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D2C3030-D077-4A9E-99DF-EEA6CA83B494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EFDA6AF-A7AB-4838-BE69-D8DAFB6DF26D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EFDA6AF-A7AB-4838-BE69-D8DAFB6DF26D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EFDA6AF-A7AB-4838-BE69-D8DAFB6DF26D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EFDA6AF-A7AB-4838-BE69-D8DAFB6DF26D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {252536EA-927F-4430-BF8E-A69375E7327A}
+	EndGlobalSection
+EndGlobal

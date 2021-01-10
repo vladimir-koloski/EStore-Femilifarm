@@ -1,0 +1,7 @@
+<img class="card-img-top" [src]="product.imageUrl" alt="Card image cap">
+<div class="card-body">
+    <h5 class="card-title">{{product.name}} - {{product.category}}</h5>
+    <p class="card-text">Price: {{product.price}} mkd</p>
+    <a [routerLink]="['product-details/', product.id]" class="btn btn-outline-success">Details</a>
+</div>
+
