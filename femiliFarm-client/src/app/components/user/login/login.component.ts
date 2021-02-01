@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService,
               private router: Router,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private cartService: CartService) { }
 
   message: string = ""
 
@@ -45,20 +47,23 @@ export class LoginComponent implements OnInit {
         
       },
       complete: () => {
-        //this.createEmptyOrder()  
-        
+        this.createEmptyCart()        
         this.router.navigateByUrl("/products")
       }
     })
   }
 
-  createEmptyOrder(){
+  createEmptyCart(){
     let userId = this.authService.getUserId()
     let request = {
-      UserId: userId
-    }
-  }
+      UserId: parseInt(userId),
+      }
+      console.log(request)
 
+    this.cartService.createCart(request).subscribe({
+      error: err => console.warn(err.error)
+    })
+  } 
 
   
 }

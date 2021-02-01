@@ -38,16 +38,12 @@ namespace FemiliFarmApp.DomainModels
             modelBuilder
                 .Entity<User>()
                 .ToTable("Users")
-                .HasKey(u => u.Id);                
+                .HasKey(u => u.Id);            
 
             modelBuilder
                 .Entity<Cart>()
                 .ToTable("Carts")
                 .HasKey(x => x.Id);
-
-            modelBuilder
-                .Entity<Cart>()
-                .HasOne(x => x.User);   
 
         }
     }

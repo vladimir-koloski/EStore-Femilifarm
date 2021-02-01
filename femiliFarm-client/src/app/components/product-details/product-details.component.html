@@ -1,4 +1,3 @@
-<p>product-details works!</p>
 <div class="card mt-2 bg-warning">
     <div class="card-header font-weight-bold">{{product.category | mapCategory}}</div>
 </div>
@@ -11,7 +10,7 @@
             <p class="card-text">{{product.description}}</p>
             <p class="card-text">Only {{product.stock}} pieces left on Stock</p>
             <p class="card-text">{{product.price}} mkd</p>
-            <button class="btn btn-outline-success">Add to cart</button>
+            <button (click)="updateCart(product)" class="btn btn-outline-success">Add to cart</button>
         </div>
     </div>
 </div>

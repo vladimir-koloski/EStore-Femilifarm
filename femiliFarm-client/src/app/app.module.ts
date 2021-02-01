@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { AliveService } from './services/alive.service';
 import { HomeComponent } from './components/home/home.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -24,6 +23,8 @@ import { UserService } from './services/user.service';
 import { AuthService } from './auth/auth.service';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { CartService } from './services/cart.service';
+import { CartComponent } from './components/cart/cart.component';
+import { SellComponent } from './components/sell/sell.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import { CartService } from './services/cart.service';
     UserComponent,
     LoginComponent,
     RegisterComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    CartComponent,
+    SellComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,6 @@ import { CartService } from './services/cart.service';
     ModalModule.forRoot()
   ],
   providers: [
-    AliveService,
     AdminPanelService,
     ProductService,
     UserService,

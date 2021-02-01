@@ -18,6 +18,11 @@ export class AdminPanelService {
     return this.http.post<ProductRequestModel>(url, request)
   }
 
+  updateProduct(request: ProductRequestModel) {
+    let url = `${this.serverUrl}/api/Product/EditProduct`
+    return this.http.post<ProductRequestModel>(url, request)
+  }
+
   getAllProducts(filter: any){
     filter.category = filter.category === "" ? "" : parseInt(filter.category)
     let url = `${this.serverUrl}/api/Product/GetProducts?name=${filter.name}&category=${filter.category}`;
@@ -27,5 +32,10 @@ export class AdminPanelService {
   deleteProduct(id: number){
     let url = `${this.serverUrl}/api/Product/DeleteProduct?id=${id}`
     return this.http.delete(url);
+  }
+
+  sellProduct(id: number) {
+    let url = `${this.serverUrl}/api/Product/SellProduct?id=${id}`
+    return this.http.get(url);
   }
 }

@@ -9,6 +9,8 @@ import { LoginComponent } from './components/user/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { AuthGuard } from './auth/aut.guard';
+import { CartComponent } from './components/cart/cart.component';
+import { SellComponent } from './components/sell/sell.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,8 @@ const routes: Routes = [
     {path: 'products', component: ProductsComponent},
     {path: 'products/product-details/:id', component: ProductDetailsComponent},
     {path: 'forbidden', component: ForbiddenComponent},
+    {path: 'cart', component: CartComponent},
+    {path: 'sell', component: SellComponent},
     {path: 'user', component: UserComponent,
     children: [
         {path: 'register', component: RegisterComponent},

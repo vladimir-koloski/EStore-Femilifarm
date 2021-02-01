@@ -48,6 +48,7 @@ namespace FemiliFarmApp.Services.Services.Classes
                 Email = user.Email,
                 Token = token
             };
+
             return userModel;
         }
 

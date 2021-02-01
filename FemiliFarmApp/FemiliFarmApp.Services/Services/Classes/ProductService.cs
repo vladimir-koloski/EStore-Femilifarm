@@ -67,14 +67,28 @@ namespace FemiliFarmApp.Services.Services.Classes
             _productRepository.Remove(product);
         }
 
+        public void EditProduct(ProductRequestModel request)
+        {
+            var product = _productRepository.GetAll().FirstOrDefault(p => p.Id == request.Id);
+            product.Name = request.Name;
+            product.Price = request.Price;
+            product.Stock = request.Stock;
+            product.ImageUrl = request.ImageUrl;
+            product.Description = request.Description;
+            _productRepository.Update(product);
+        }
+
         public Product GetProductById(int id)
         {
             return _productRepository.GetAll().Where(p => p.Id == id).FirstOrDefault();
         }
 
-        
-
-
-
+        public Product SellProduct(int id)
+        {
+            var product = _productRepository.GetAll().Where(p => p.Id == id).FirstOrDefault();
+            product.Stock -= 1;
+            _productRepository.Update(product);
+            return product;
+        }
     }
 }

@@ -9,6 +9,6 @@ namespace FemiliFarmApp.DataAccess
     {
         void Insert(Cart cart);
         Cart GetCartByUserId(int id);
-        void Update(Cart cart);        
+        void Update(Cart cart);
     }
 }

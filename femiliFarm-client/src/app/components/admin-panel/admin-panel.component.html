@@ -29,7 +29,7 @@
 
 <ng-template #template>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">Add Product</h4>
+        <h4 class="modal-title pull-left">{{isEditMode ? 'Edit Restaurant' : 'Add Restaurant'}}</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -69,7 +69,7 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-outline-success mt-2 mb-2" (click)="addProduct()">Add Product</button>
+            <button type="button" class="btn btn-outline-success mt-2 mb-2" (click)="isEditMode ? editProduct() : addProduct()">{{isEditMode ? 'Save' : 'Add Product'}}</button>
         </div>
 
         </form>
@@ -103,8 +103,9 @@
             <td>{{product.stock}}</td>
             <td>{{product.category | mapCategory}}</td>
             <td>
-                <button class="btn btn-outline-warning mr-2" >Edit</button>                
+                <button class="btn btn-outline-warning mr-2" (click)="openModal(template, product)">Edit</button>                
                 <button class="btn btn-outline-danger" (click)="deleteProduct(product.id)"> Delete</button>
+                <button class="btn btn-outline-success mr-2" (click)="cellProduct(product.id)"> Sell</button>
             </td>
         </tr>     
       </tbody>

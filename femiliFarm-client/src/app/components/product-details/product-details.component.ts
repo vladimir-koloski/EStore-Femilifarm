@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Product } from 'src/app/models/product-model';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
+
 @Component({
-  selector: 'app-product-details',
+  selector: 'app-product-details', 
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
@@ -14,15 +17,15 @@ export class ProductDetailsComponent implements OnInit {
   product: Product
 
   constructor(private activatedRoute: ActivatedRoute,
-              private productService: ProductService) { }
+              private productService: ProductService,
+              private authService: AuthService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: any) => {
       this.productId = params.id    
     })
-
     this.getProductById()
-
   }
 
   getProductById(){    
@@ -32,6 +35,18 @@ export class ProductDetailsComponent implements OnInit {
       complete: () => {
         console.log('Product')        
       }
+    })
+  }
+
+  updateCart(product){
+    let userId = this.authService.getUserId()
+    let request = {
+      UserId: parseInt(userId),
+      Product: product
+    }
+
+    this.cartService.updateCart(request).subscribe({
+      error: err => console.warn(err.error)
     })
   }
 }

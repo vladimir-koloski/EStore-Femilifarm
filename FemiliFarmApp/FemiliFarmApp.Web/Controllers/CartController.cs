@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FemiliFarmApp.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Cart")]
     [ApiController]
     public class CartController : ControllerBase
     {
@@ -38,7 +38,7 @@ namespace FemiliFarmApp.Web.Controllers
             return Ok();
         }
 
-        [HttpPost("GetCart")]
+        [HttpGet("GetCart")]
         public IActionResult GetCart([FromQuery] int userId)
         {
             var cart = _cartService.GetCartByUserId(userId);

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FemiliFarmApp.DomainModels.Migrations
 {
     [DbContext(typeof(FemiliDbContext))]
-    [Migration("20210110174622_FemiliDb")]
+    [Migration("20210111145009_FemiliDb")]
     partial class FemiliDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

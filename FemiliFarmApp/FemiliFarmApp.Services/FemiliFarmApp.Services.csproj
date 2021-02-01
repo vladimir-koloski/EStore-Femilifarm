@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FemiliFarmApp.DataAccessss\FemiliFarmApp.DataAccess.csproj" />
     <ProjectReference Include="..\FemiliFarmApp.DataAccess\FemiliFarmApp.DataAccess.csproj" />
     <ProjectReference Include="..\FemiliFarmApp.DomainModels\FemiliFarmApp.DomainModels.csproj" />
     <ProjectReference Include="..\FemiliFarmApp.RequestModels\FemiliFarmApp.RequestModels.csproj" />

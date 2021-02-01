@@ -42,6 +42,13 @@ namespace FemiliFarmApp.Web.Controllers
             return Ok();
         }
 
+        [HttpPost("EditProduct")]
+        public IActionResult EditProduct([FromBody] ProductRequestModel request)
+        {
+            _productService.EditProduct(request);
+            return Ok();
+        }
+
         [HttpDelete("DeleteProduct")]
         public IActionResult DeleteProduct([FromQuery] int id)
         {
@@ -57,6 +64,12 @@ namespace FemiliFarmApp.Web.Controllers
             return Ok(product);
         }
 
-        
+        [HttpGet("SellProduct")]
+        public IActionResult SellProduct([FromQuery] int id) 
+        {
+            var product = _productService.SellProduct(id);
+            return Ok(product);
+        }
+
     }
 }

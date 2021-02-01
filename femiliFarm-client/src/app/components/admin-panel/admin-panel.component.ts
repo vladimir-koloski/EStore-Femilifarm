@@ -1,7 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Category, ProductRequestModel } from 'src/app/models/product-model';
+import { Category, Product, ProductRequestModel } from 'src/app/models/product-model';
 import { AdminPanelService } from 'src/app/services/admin-panel.service';
 
 @Component({
@@ -14,6 +15,9 @@ export class AdminPanelComponent implements OnInit {
   modalRef: BsModalRef;
 
   products: any;  
+  product: any;
+  isEditMode: boolean = false;
+  productId: number;
 
   requestForm = new FormGroup({
     name: new FormControl(''),
@@ -35,7 +39,8 @@ export class AdminPanelComponent implements OnInit {
   categoryList = [Category.Baby, Category.Cosmetics, Category.Drugs, Category.OTC]
 
   constructor(private adminPanelService: AdminPanelService,
-              private modalService: BsModalService) { }
+              private modalService: BsModalService,
+              private router: Router) { }
 
   ngOnInit(): void { 
     this.getAllProducts()
@@ -54,14 +59,24 @@ export class AdminPanelComponent implements OnInit {
     this.adminPanelService.addProduct(requestModel).subscribe({
       error: err => console.warn(err),
       complete: () => {
-        console.log('Im in')
         this.closeModal()
         this.getAllProducts()
       }
     })
   }
 
-  
+  editProduct() {
+    let body = Object.assign(this.requestForm.value, { id : this.productId})
+    body.Category = parseInt(body.Category)
+
+    this.adminPanelService.updateProduct(body).subscribe({
+      error: err => console.warn(err.error),
+      complete: () => {
+        this.closeModal()
+        this.getAllProducts()
+      }
+    })
+  }
 
   getAllProducts(){
 
@@ -77,7 +92,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
   deleteProduct(id: number){
-    this.adminPanelService.deleteProduct(id).subscribe({
+    this.adminPanelService.deleteProduct(id).subscribe({      
       error: err => console.warn(err.error),
       complete: () => {
         this.getAllProducts()
@@ -85,13 +100,39 @@ export class AdminPanelComponent implements OnInit {
     })
   }
 
-  openModal(template: TemplateRef<any>) {
+  cellProduct(id: number){
+    this.adminPanelService.sellProduct(id).subscribe({
+      next: res => {
+        this.product = res
+      },
+      error: err => console.warn(err.error),
+      complete: () => {
+        this.getAllProducts()
+        this.router.navigateByUrl("/sell")
+      }
+    })
+  }
+
+  openModal(template: TemplateRef<any>, product?: any) {
     this.modalRef = this.modalService.show(template);
+
+    if(!product) {
+      this.requestForm.get("category").setValue(Category.Baby)
+    }
+
+    if(!!product) {
+      this.isEditMode = true;
+      const {id, Name, ...rest} = product
+
+      this.requestForm.setValue(rest)
+      this.productId = id
+    }
   }
 
   closeModal(){
     this.modalService._hideModal()
     this.modalService._hideBackdrop()
+    this.isEditMode = false;
     this.requestForm.reset()
   }
 
