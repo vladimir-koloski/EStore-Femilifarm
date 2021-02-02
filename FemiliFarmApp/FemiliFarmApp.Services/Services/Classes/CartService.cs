@@ -20,7 +20,7 @@ namespace FemiliFarmApp.Services.Services.Classes
             var cart = new Cart()
             {
                 UserId = model.UserId,
-                Products = new List<Product>()
+                CartItems = new List<CartItems>()
             };
             _cartRepository.Insert(cart);
         }
@@ -30,12 +30,12 @@ namespace FemiliFarmApp.Services.Services.Classes
             return _cartRepository.GetCartByUserId(id);
         }
 
-        public void UpdateCart(CartRequestModel model)
-        {
-            var cart = _cartRepository.GetCartByUserId(model.UserId);
-            cart.Products.Add(model.Product);
+        //public void UpdateCart(CartRequestModel model)
+        //{
+        //    var cart = _cartRepository.GetCartByUserId(model.UserId);
+        //    cart.CartItems.Add(model.CartItems);
 
-            _cartRepository.Update(cart);
-        }
+        //    _cartRepository.Update(cart);
+        //}
     }
 }

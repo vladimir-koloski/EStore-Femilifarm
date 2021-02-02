@@ -64,7 +64,7 @@ namespace FemiliFarmApp.Services.Services.Classes
                     {
                         new Claim("Username", user.UserName),
                         new Claim("UserId", user.Id.ToString()),
-                        new Claim("role", user.Role),
+                        new Claim("role", user.RoleId),
                     }),
                 Expires = DateTime.UtcNow.AddDays(_jwtSettings.Value.ExpireDays),
                 SigningCredentials = new SigningCredentials(
@@ -85,7 +85,7 @@ namespace FemiliFarmApp.Services.Services.Classes
                 Email = request.Email,
                 UserName = request.UserName,
                 Password = hashedPassword,
-                Role = "CUSTOMER"
+                RoleId = 1
             };
 
             _userRepository.Insert(user);

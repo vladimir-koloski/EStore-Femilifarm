@@ -21,20 +21,15 @@ namespace FemiliFarmApp.Web.Controllers
 
         [HttpPost("CreateCart")]
         public IActionResult CreateCart([FromBody] CartRequestModel request)
-        {
-            var cart = _cartService.GetCartByUserId(request.UserId);
-            if(cart == null)
-            {
-                _cartService.CreateNewCart(request);
-            }
-
+        {            
+            _cartService.CreateNewCart(request);  
             return Ok();
         }
 
         [HttpPost("UpdateCart")]
         public IActionResult UpdateOrder([FromBody] CartRequestModel request)
         {
-            _cartService.UpdateCart(request);
+            //_cartService.UpdateCart(request);
             return Ok();
         }
 

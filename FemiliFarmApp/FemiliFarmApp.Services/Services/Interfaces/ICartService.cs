@@ -9,7 +9,7 @@ namespace FemiliFarmApp.Services.Services.Interfaces
     public interface ICartService
     {
         void CreateNewCart(CartRequestModel model);
-        void UpdateCart(CartRequestModel model);
+        //void UpdateCart(CartRequestModel model);
         Cart GetCartByUserId(int id);
     }
 }
