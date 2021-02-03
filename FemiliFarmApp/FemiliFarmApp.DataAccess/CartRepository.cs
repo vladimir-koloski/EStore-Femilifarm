@@ -1,5 +1,6 @@
 ﻿using FemiliFarmApp.DomainModels;
 using FemiliFarmApp.DomainModels.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace FemiliFarmApp.DataAccess
 
         public Cart GetCartByUserId(int id)
         {
-            return GetAll().Where(x => x.UserId == id).FirstOrDefault();
+            return _context.Carts.Include(c => c.CartProducts).FirstOrDefault(x => x.UserId == id);
         }
 
         public void Insert(Cart cart)
@@ -36,5 +37,7 @@ namespace FemiliFarmApp.DataAccess
             _context.Carts.Update(cart);
             _context.SaveChanges();
         }
+
+
     }
 }

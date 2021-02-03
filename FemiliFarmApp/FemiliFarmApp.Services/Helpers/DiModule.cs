@@ -1,7 +1,6 @@
 ﻿using FemiliFarmApp.DataAccess;
 using FemiliFarmApp.DomainModels;
 using FemiliFarmApp.DomainModels.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -12,9 +11,9 @@ namespace FemiliFarmApp.Services.Helpers
 {
     public static class DiModule
     {
-        public static IServiceCollection RegisterModule(IServiceCollection services, 
+        public static IServiceCollection RegisterModule(IServiceCollection services,
                                                         string connectionString)
-                                                        //string npgSqlDatabase)
+        //string npgSqlDatabase)
         {
             services.AddDbContext<FemiliDbContext>(x => x.UseSqlServer(connectionString));
 

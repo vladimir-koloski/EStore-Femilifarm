@@ -7,8 +7,7 @@ namespace FemiliFarmApp.RequestModels.Models
 {
     public class CartRequestModel
     {
-        public int Id { get; set; }
         public int UserId { get; set; }
-        public IEnumerable<CartItems> CartItems { get; set; }
+        public Product Product { get; set; }
     }
 }

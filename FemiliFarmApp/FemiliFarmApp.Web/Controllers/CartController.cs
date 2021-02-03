@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,15 +21,26 @@ namespace FemiliFarmApp.Web.Controllers
 
         [HttpPost("CreateCart")]
         public IActionResult CreateCart([FromBody] CartRequestModel request)
-        {            
-            _cartService.CreateNewCart(request);  
+        {
+            var cart = _cartService.GetCartByUserId(request.UserId);
+            if (cart == null)
+            {
+                _cartService.CreateNewCart(request);
+            }
             return Ok();
         }
 
         [HttpPost("UpdateCart")]
         public IActionResult UpdateOrder([FromBody] CartRequestModel request)
         {
-            //_cartService.UpdateCart(request);
+            _cartService.UpdateCart(request);
+            return Ok();
+        }
+
+        [HttpPost("RemoveProductFromCart")]
+        public IActionResult RemoveProductFromCart([FromBody] CartRequestModel request)
+        {
+            _cartService.RemoveProductFromCart(request);
             return Ok();
         }
 

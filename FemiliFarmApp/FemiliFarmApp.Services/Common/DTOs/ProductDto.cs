@@ -1,11 +1,11 @@
-﻿using FemiliFarmApp.DomainModels.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FemiliFarmApp.DomainModels.Enums;
 
-namespace FemiliFarmApp.DomainModels.Models
+namespace FemiliFarmApp.Services.Common.DTOs
 {
-    public class Product
+    public class ProductDto
     {
         public int Id { get; set; }
         public double Price { get; set; }
@@ -14,6 +14,5 @@ namespace FemiliFarmApp.DomainModels.Models
         public int Stock { get; set; }
         public string ImageUrl { get; set; }
         public Category? Category { get; set; }
-        public virtual ICollection<CartProduct> CartProducts { get; set; }
     }
 }

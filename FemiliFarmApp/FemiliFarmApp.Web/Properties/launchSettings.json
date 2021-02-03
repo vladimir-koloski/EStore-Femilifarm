@@ -8,7 +8,7 @@
       "sslPort": 0
     }
   },
-  "profiles": {    
+  "profiles": {
     "FemiliFarmApp.Web": {
       "commandName": "Project",
       "launchBrowser": true,

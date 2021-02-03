@@ -1,12 +1,12 @@
-﻿using FemiliFarmApp.DomainModels.Models;
-using FemiliFarmApp.RequestModels.Models;
-using FemiliFarmApp.Services.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using FemiliFarmApp.RequestModels.Models;
+using FemiliFarmApp.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FemiliFarmApp.Web.Controllers
 {
@@ -24,12 +24,12 @@ namespace FemiliFarmApp.Web.Controllers
         public IActionResult Register([FromBody] RegisterModel request)
         {
             var userNameExist = _userService.FindByUserName(request);
-            if(userNameExist != null)
+            if (userNameExist != null)
             {
                 return BadRequest("This username is already used!");
             }
             var mailExist = _userService.FindByEmail(request);
-            if(mailExist != null)
+            if (mailExist != null)
             {
                 return BadRequest("This email address is already used!");
             }
@@ -41,14 +41,14 @@ namespace FemiliFarmApp.Web.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-            }            
+            }
         }
 
         [HttpPost("Login")]
         public ActionResult<UserModel> Login([FromBody]LoginRequestModel request)
         {
             try
-            {
+                {
                 var response = _userService.Login(request.UserName, request.Password);
                 Debug.WriteLine($"{response.FullName} has been loged in");
                 return Ok(response);

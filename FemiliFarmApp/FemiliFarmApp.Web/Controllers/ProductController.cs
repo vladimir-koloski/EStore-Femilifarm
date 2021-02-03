@@ -1,12 +1,11 @@
+﻿using FemiliFarmApp.DomainModels.Enums;
+using FemiliFarmApp.RequestModels.Models;
+using FemiliFarmApp.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FemiliFarmApp.DomainModels.Enums;
-using FemiliFarmApp.RequestModels.Models;
-using FemiliFarmApp.Services.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace FemiliFarmApp.Web.Controllers
 {
@@ -52,7 +51,7 @@ namespace FemiliFarmApp.Web.Controllers
         [HttpDelete("DeleteProduct")]
         public IActionResult DeleteProduct([FromQuery] int id)
         {
-            
+
             _productService.DeleteProduct(id);
             return Ok();
         }
@@ -65,7 +64,7 @@ namespace FemiliFarmApp.Web.Controllers
         }
 
         [HttpGet("SellProduct")]
-        public IActionResult SellProduct([FromQuery] int id) 
+        public IActionResult SellProduct([FromQuery] int id)
         {
             var product = _productService.SellProduct(id);
             return Ok(product);

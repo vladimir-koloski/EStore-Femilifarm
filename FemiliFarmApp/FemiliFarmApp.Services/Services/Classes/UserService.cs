@@ -28,13 +28,13 @@ namespace FemiliFarmApp.Services.Services.Classes
         public UserModel Login(string username, string password)
         {
             var user = _userRepository.GetAll().FirstOrDefault(u => u.UserName == username);
-            if(user == null)
+            if (user == null)
             {
                 throw new Exception("User with that username does not exists");
             }
 
             var hashedPassword = HashPassword(password);
-            if(user.Password != hashedPassword)
+            if (user.Password != hashedPassword)
             {
                 throw new Exception("User password does not match with user");
             }
@@ -64,7 +64,7 @@ namespace FemiliFarmApp.Services.Services.Classes
                     {
                         new Claim("Username", user.UserName),
                         new Claim("UserId", user.Id.ToString()),
-                        new Claim("role", user.RoleId),
+                        new Claim("role", user.Role),
                     }),
                 Expires = DateTime.UtcNow.AddDays(_jwtSettings.Value.ExpireDays),
                 SigningCredentials = new SigningCredentials(
@@ -77,7 +77,7 @@ namespace FemiliFarmApp.Services.Services.Classes
 
         public void Register(RegisterModel request)
         {
-            var hashedPassword = HashPassword(request.Password);            
+            var hashedPassword = HashPassword(request.Password);
 
             var user = new User
             {
@@ -85,7 +85,7 @@ namespace FemiliFarmApp.Services.Services.Classes
                 Email = request.Email,
                 UserName = request.UserName,
                 Password = hashedPassword,
-                RoleId = 1
+                Role = "CUSTOMER"
             };
 
             _userRepository.Insert(user);

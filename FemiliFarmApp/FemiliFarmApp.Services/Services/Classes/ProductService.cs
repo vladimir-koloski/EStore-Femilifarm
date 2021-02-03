@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FemiliFarmApp.Services.Services.Classes
 {
@@ -26,7 +25,7 @@ namespace FemiliFarmApp.Services.Services.Classes
             var filteredList = new List<Product>();
             foreach (var product in products)
             {
-                if(product.Name.ToLower()  == requestModel.Name | product.Category == requestModel.Category)
+                if (product.Name.ToLower() == requestModel.Name | product.Category == requestModel.Category)
                 {
                     filteredList.Add(product);
                 }
@@ -38,10 +37,10 @@ namespace FemiliFarmApp.Services.Services.Classes
             else
             {
                 return products;
-            } 
+            }
         }
 
-        
+
 
         public void CreateProduct(ProductRequestModel request)
         {
@@ -54,7 +53,7 @@ namespace FemiliFarmApp.Services.Services.Classes
                 ImageUrl = request.ImageUrl,
                 Stock = request.Stock
             };
-             _productRepository.Insert(product);
+            _productRepository.Insert(product);
         }
 
         public void DeleteProduct(int id)
