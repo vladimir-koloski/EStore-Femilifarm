@@ -50,6 +50,6 @@ export class ProductDetailsComponent implements OnInit {
       error: err => console.warn(err.error)
     })
 
-    this.router.navigateByUrl("/cart")
+    this.router.navigateByUrl("cart")
   }
 }

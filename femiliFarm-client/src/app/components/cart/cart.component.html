@@ -18,6 +18,7 @@
             <td>{{ product.description }}</td>
             <td>{{ product.category | mapCategory }}</td>
             <td>{{ product.price }}</td>
+            <td><button (click)= "removeProduct(product)" class="btn btn-outline-danger">Remove</button></td>
             
           </tr>
           <tr>

@@ -22,6 +22,11 @@ export class CartService {
     return this.http.post(url, request);
   }
 
+  removeProductFromCart(request: any) : Observable<any>{
+    let url = `${this.serverUrl}/api/Cart/RemoveProductFromCart`;
+    return this.http.post(url, request);
+  }
+
   getUserCart(userId: number) : Observable<any>{
     let url = `${this.serverUrl}/api/Cart/GetCart?UserId=${userId}`;
     return this.http.get(url);
