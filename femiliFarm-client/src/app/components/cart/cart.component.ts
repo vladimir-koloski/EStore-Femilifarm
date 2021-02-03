@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getUserCart();
+    this.getUserCart()
     this.activatedRoute.params.subscribe((params: any) => {
       this.productId = params.id        
     })    
