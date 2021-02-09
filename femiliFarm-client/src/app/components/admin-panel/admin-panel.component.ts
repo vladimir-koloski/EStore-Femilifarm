@@ -1,8 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Category, Product, ProductRequestModel } from 'src/app/models/product-model';
+import { Category, Product, ProductRequestModel,      } from 'src/app/models/product-model';
 import { AdminPanelService } from 'src/app/services/admin-panel.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class AdminPanelComponent implements OnInit {
   modalRef: BsModalRef;
 
   products: any;  
-  product: any;
+  cartProducts: any;
   isEditMode: boolean = false;
   productId: number;
 
@@ -25,7 +25,12 @@ export class AdminPanelComponent implements OnInit {
     price: new FormControl(''),
     stock: new FormControl(''),
     imageUrl: new FormControl(''),
-    category:  new FormControl('')
+    category:  new FormControl(''),
+    // cartProducts: new FormArray([
+    //   new FormControl(),
+    //   new FormControl()
+    // ])
+    
   })
 
   filterForm = new FormGroup({
@@ -54,6 +59,7 @@ export class AdminPanelComponent implements OnInit {
     requestModel.Stock = parseInt(this.requestForm.value.stock);
     requestModel.ImageUrl = this.requestForm.value.imageUrl;
     requestModel.Category = parseInt(this.requestForm.value.category);
+    
 
     
     this.adminPanelService.addProduct(requestModel).subscribe({
@@ -66,8 +72,9 @@ export class AdminPanelComponent implements OnInit {
   }
 
   editProduct() {
-    let body = Object.assign(this.requestForm.value, { id : this.productId})
-    body.Category = parseInt(body.Category)
+    let body = Object.assign(this.requestForm.value, { id : this.productId })
+    body.category = parseInt(body.category)
+    body.stock = parseInt(body.stock)    
 
     this.adminPanelService.updateProduct(body).subscribe({
       error: err => console.warn(err.error),
@@ -100,18 +107,18 @@ export class AdminPanelComponent implements OnInit {
     })
   }
 
-  cellProduct(id: number){
-    this.adminPanelService.sellProduct(id).subscribe({
-      next: res => {
-        this.product = res
-      },
-      error: err => console.warn(err.error),
-      complete: () => {
-        this.getAllProducts()
-        this.router.navigateByUrl("/sell")
-      }
-    })
-  }
+  // cellProduct(id: number){
+  //   this.adminPanelService.sellProduct(id).subscribe({
+  //     next: res => {
+  //       this.product = res
+  //     },
+  //     error: err => console.warn(err.error),
+  //     complete: () => {
+  //       this.getAllProducts()
+  //       this.router.navigateByUrl("/sell")
+  //     }
+  //   })
+  // }
 
   openModal(template: TemplateRef<any>, product?: any) {
     this.modalRef = this.modalService.show(template);
@@ -122,10 +129,11 @@ export class AdminPanelComponent implements OnInit {
 
     if(!!product) {
       this.isEditMode = true;
-      const {id, Name, ...rest} = product
-
+      
+      const {id, Name, Description, cartProducts, Price, ...rest} = product      
       this.requestForm.setValue(rest)
       this.productId = id
+      
     }
   }
 

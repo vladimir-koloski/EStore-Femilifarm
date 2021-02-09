@@ -74,6 +74,7 @@ namespace FemiliFarmApp.Services.Services.Classes
             product.Stock = request.Stock;
             product.ImageUrl = request.ImageUrl;
             product.Description = request.Description;
+            product.Category = request.Category;
             _productRepository.Update(product);
         }
 

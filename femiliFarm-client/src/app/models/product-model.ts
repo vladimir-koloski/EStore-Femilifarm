@@ -1,10 +1,12 @@
 export class ProductRequestModel {
+    Id: number;
     Name: string;
     Description: string;
     Price: number;
     Stock: number;
     ImageUrl: string;
     Category: Category  
+    CartProducts: any;
 }
 
 export class Product {

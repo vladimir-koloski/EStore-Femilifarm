@@ -18,7 +18,7 @@ export class AdminPanelService {
     return this.http.post<ProductRequestModel>(url, request)
   }
 
-  updateProduct(request: ProductRequestModel) {
+  updateProduct(request: ProductRequestModel) : Observable<any>{
     let url = `${this.serverUrl}/api/Product/EditProduct`
     return this.http.post<ProductRequestModel>(url, request)
   }

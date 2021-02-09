@@ -2,6 +2,15 @@
     <div class="card-header font-weight-bold">{{product.category | mapCategory}}</div>
 </div>
 
+<div class="row"  *ngIf="showMessage">
+    <div class="col-xs-12">
+      <p class="alert alert-success">
+          <strong>You added {{product.name}} to your cart!</strong> Check in your cart all the products you have addded.
+
+      </p>
+    </div>
+  </div>
+
 <div class="d-flex flex-wrap justify-content-start">
     <div class="card mt-2 mb-2 mr-2" style="width: 350px;">   
         <img class="card-img-top" [src]="product.imageUrl" alt="Card image cap">

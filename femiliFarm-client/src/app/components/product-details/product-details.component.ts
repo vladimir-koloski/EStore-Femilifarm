@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -15,6 +16,7 @@ export class ProductDetailsComponent implements OnInit {
 
   productId: number
   product: Product
+  showMessage: boolean = false
 
   constructor(private activatedRoute: ActivatedRoute,
               private productService: ProductService,
@@ -49,7 +51,6 @@ export class ProductDetailsComponent implements OnInit {
     this.cartService.updateCart(request).subscribe({
       error: err => console.warn(err.error)
     })
-
-    this.router.navigateByUrl("/cart")
+    this.showMessage = true;    
   }
 }
