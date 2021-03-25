@@ -5,17 +5,22 @@
 </div>
 
 <div class="card">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+    <div  id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div  class="carousel-inner">
           <div class="carousel-item active">
-            <img src="../../../assets/img/iStock-463594335-12.jpg" class="d-block w-100" alt="...">
-          </div>
-          <!-- <div class="carousel-item">
-            <img src="https://lh3.googleusercontent.com/proxy/YXIsMuVq-3wXKjF4D6NQjLa6mm3UplcwlS0Wb2HlSV7ymVEDSBB81uA32QZngQdZAekr1mEjEBgyln8-6Zms_AziqIerzZo5wdme-V7T0WvnwxctKgAgNozd7zVq3OJwF1DEwLKoRd378_jy9O3I10Oy_gTox9VqAJdi" class="d-block w-100" alt="...">
+            <img class="card-img-top" [src]="products[0].imageUrl" class="d-block w-200" alt="Card image cap">
+<!-- <div class="card-body">
+    <h5 class="card-title">{{products[0].name}} </h5>
+    <p class="card-text">Price: {{products[0].price}} mkd</p>
+    <a [routerLink]="['product-details/', products[0].id]" class="btn btn-outline-success">Details</a>
+</div> -->
           </div>
           <div class="carousel-item">
-            <img src="https://media-cdn.tripadvisor.com/media/photo-s/1a/08/d9/91/salle-du-restaurant.jpg" class="d-block w-100" alt="...">
-          </div> -->
+            <img [src]="products[1].imageUrl" class="d-block w-200" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img [src]="products[2].imageUrl" class="d-block w-500" alt="...">
+          </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>

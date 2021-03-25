@@ -25,6 +25,11 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { CartService } from './services/cart.service';
 import { CartComponent } from './components/cart/cart.component';
 import { SellComponent } from './components/sell/sell.component';
+import { OrderService } from './services/order.service';
+import { OrderComponent } from './components/order/order.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,11 @@ import { SellComponent } from './components/sell/sell.component';
     RegisterComponent,
     ForbiddenComponent,
     CartComponent,
-    SellComponent
+    SellComponent,
+    OrderComponent,
+    OrdersComponent,
+    OrderDetailsComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +65,8 @@ import { SellComponent } from './components/sell/sell.component';
     ProductService,
     UserService,
     AuthService,
-    CartService
+    CartService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,76 @@
+<ng-template #template>
+  <div class="modal-header">
+      <h4 class="modal-title pull-left">{{isEditMode ? 'Edit User' : 'Add New User'}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      
+  </div>
+  <div class="modal-body">
+      
+      <form [formGroup]="requestForm">
+
+      <div class="form-group">
+          <label for="userName">Username</label>
+          <input type="text" class="form-control" formControlName="userName" id="userName">            
+      </div>
+
+      <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" class="form-control" formControlName="fullName" id="fullName">
+      </div>
+      <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" formControlName="email" id="email">
+      </div>
+        <div formGroupName="passwords">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" formControlName="password" id="password">
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" class="form-control" formControlName="confirmPassword" id="confirmPassword">
+        </div> 
+      </div>
+
+      <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-outline-success mt-2 mb-2" (click)="isEditMode ? editUser() : createUser()">{{isEditMode ? 'Save' : 'Add User'}}</button>
+      </div>
+
+      </form>
+
+  </div>
+</ng-template>
+
+<div class="card p-2 mb-2">
+    <table class="table table-striped">
+
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Id</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <button class="btn btn-outline-success mr-2" (click)="openModal(template)"> Add New User</button>
+        </tr>
+        
+      </thead>
+
+      <tbody>        
+        <tr *ngFor="let user of users; index as i">            
+            <th scope="row">{{i + 1}}</th>
+            <td>{{user.id}}</td>
+            <td>{{user.fullName}}</td>
+            <td>{{user.userName}}</td>
+            <td>{{user.email}}</td>
+            <td>
+                <button class="btn btn-outline-warning mr-2" (click)="openModal(template, user)">Edit</button>                
+                <button class="btn btn-outline-danger" (click)="deleteUser(user.id)"> Delete</button>                
+            </td>
+        </tr>     
+      </tbody>
+
+    </table>
+  </div>

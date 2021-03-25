@@ -19,8 +19,9 @@ namespace FemiliFarmApp.Services.Services.Classes
             _cartRepository = cartRepository;
             _productRepository = productRepository;
         }
-        
-        public void CreateNewCart(CartRequestModel model)
+
+
+        public Cart CreateNewCart(CartRequestModel model)
         {
             var cart = new Cart()
             {
@@ -28,6 +29,7 @@ namespace FemiliFarmApp.Services.Services.Classes
                 //CartProducts = new List<CartProduct>()
             };
             _cartRepository.Insert(cart);
+            return cart;
         }
 
         public CartDto GetCartByUserId(int id)
@@ -36,36 +38,42 @@ namespace FemiliFarmApp.Services.Services.Classes
 
             var productDtoList = new List<ProductDto>();
 
-            var productsIdsList = cart.CartProducts.Select(c => c.ProductId);
-            var allProducts = _productRepository.GetAll();
-            foreach (var product in allProducts)
+            if (cart != null)
             {
-                foreach (var productId in productsIdsList)
+                var productsIdsList = cart.CartProducts.Select(c => c.ProductId);
+                var allProducts = _productRepository.GetAll();
+                foreach (var product in allProducts)
                 {
-                    if(productId == product.Id)
+                    foreach (var productId in productsIdsList)
                     {
-                        var productDto = new ProductDto
+                        if (productId == product.Id)
                         {
-                            Id = product.Id,
-                            Name = product.Name,
-                            Description = product.Description,
-                            Stock = product.Stock,
-                            Price = product.Price,
-                            ImageUrl = product.ImageUrl,
-                            Category = product.Category
-                            
-                        };
-                        productDtoList.Add(productDto);
+                            var productDto = new ProductDto
+                            {
+                                Id = product.Id,
+                                Name = product.Name,
+                                Description = product.Description,
+                                Stock = product.Stock,
+                                Price = product.Price,
+                                ImageUrl = product.ImageUrl,
+                                Category = product.Category
+
+                            };
+                            productDtoList.Add(productDto);
+                        }
                     }
                 }
-            }
 
-            return new CartDto 
-            {
-                Id = cart.Id,
-                UserId = cart.UserId,
-                Products = productDtoList
-            };
+                return new CartDto
+                {
+                    Id = cart.Id,
+                    UserId = cart.UserId,
+                    Products = productDtoList
+                };
+            }
+            else return null;
+
+            
         }
 
         public void UpdateCart(CartRequestModel model)

@@ -12,15 +12,26 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item">
+            <li *ngIf="!isUserAdmin" class="nav-item">
                 <a class="nav-link" routerLink="home">Home</a>
             </li>
-            <li class="nav-item">
+            <li *ngIf="!isUserAdmin" class="nav-item">
                 <a class="nav-link" routerLink="products">Products</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" routerLink="cart">Cart</a>
+            <li *ngIf="!isUserAdmin && isLoggedIn" class="nav-item menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children has-sub open">
+                <a class="nav-link" routerLink="cart">Cart ({{this.cart.products.length}})</a>
+                <!-- <ul *ngFor="let product of cart.products" class="menu-children">
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><p>{{product.name}}</p>
+                    </li>
+                  </ul> -->
+            </li>
+
+            <li *ngIf="isUserAdmin && isLoggedIn" class="nav-item">
+                <a class="nav-link" routerLink="orders" >Orders</a>
+            </li>
+            <li *ngIf="isUserAdmin && isLoggedIn" class="nav-item">
+                <a class="nav-link" routerLink="user-list" >Users-List</a>
             </li>
             
         </ul>

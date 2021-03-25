@@ -1,7 +1,7 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { CartRequestModel } from 'src/app/models/cart-model';
 import { Product } from 'src/app/models/product-model';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -43,9 +43,10 @@ export class ProductDetailsComponent implements OnInit {
 
   updateCart(product){
     let userId = this.authService.getUserId()
-    let request = {
-      UserId: parseInt(userId),
-      Product: product
+    let request = new CartRequestModel();
+    request = {
+      userId: parseInt(userId),
+      product: product
     }
 
     this.cartService.updateCart(request).subscribe({
@@ -53,4 +54,5 @@ export class ProductDetailsComponent implements OnInit {
     })
     this.showMessage = true;    
   }
+  
 }

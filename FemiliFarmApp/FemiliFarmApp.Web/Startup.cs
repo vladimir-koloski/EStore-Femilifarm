@@ -38,6 +38,7 @@ namespace FemiliFarmApp.Web
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IOrderService, OrderService>();
             services.AddControllers();
 
             var jwtSection = Configuration.GetSection("JwtSettings");

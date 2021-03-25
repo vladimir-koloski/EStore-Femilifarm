@@ -25,12 +25,7 @@ export class AdminPanelComponent implements OnInit {
     price: new FormControl(''),
     stock: new FormControl(''),
     imageUrl: new FormControl(''),
-    category:  new FormControl(''),
-    // cartProducts: new FormArray([
-    //   new FormControl(),
-    //   new FormControl()
-    // ])
-    
+    category:  new FormControl('')   
   })
 
   filterForm = new FormGroup({

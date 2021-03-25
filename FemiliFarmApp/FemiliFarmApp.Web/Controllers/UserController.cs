@@ -55,11 +55,33 @@ namespace FemiliFarmApp.Web.Controllers
             }
             catch (Exception ex)
             {
-
                 Debug.WriteLine(ex.Message);
                 return BadRequest("Something went wrong!");
             }
 
         }
+
+        [HttpGet("GetAllUsers")]
+        public IActionResult GetAll()
+        {
+            var users = _userService.GetAll();
+            return Ok(users);
+        }
+
+        [HttpDelete("DeleteUser")]
+        public IActionResult DeleteUser([FromQuery] int id)
+        {
+            _userService.Delete(id);
+            return Ok();
+        }
+
+        [HttpPost("EditUser")]
+        public IActionResult EditUser([FromBody] UserModel model)
+        {
+            _userService.Update(model);
+            return Ok();
+        }
+
+
     }
 }

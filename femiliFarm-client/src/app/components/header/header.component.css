@@ -1,3 +1,10 @@
 a {
     cursor: pointer;
 }
+
+.menu-children {
+    display: none;
+  }
+  .menu-item-has-children:hover .menu-children {
+    display: block;
+  }

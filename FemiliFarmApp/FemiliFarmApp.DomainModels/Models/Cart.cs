@@ -9,7 +9,7 @@ namespace FemiliFarmApp.DomainModels.Models
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public DateTime CreatenOn { get; set; } = DateTime.Now;
+        public DateTime CreatedOn { get; set; } = DateTime.Now;
         public virtual ICollection<CartProduct> CartProducts { get; set; }
 
         [ForeignKey(nameof(UserId))]

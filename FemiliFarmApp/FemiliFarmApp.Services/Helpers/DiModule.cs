@@ -20,6 +20,7 @@ namespace FemiliFarmApp.Services.Helpers
             services.AddTransient<IRepository<Product>, ProductRepository>();
             services.AddTransient<IRepository<User>, UserRepository>();
             services.AddTransient<ICartRepository, CartRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
 
 
             //services.AddDbContext<UserDbContext>(options =>

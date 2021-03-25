@@ -23,7 +23,12 @@ namespace FemiliFarmApp.DataAccess
 
         public Cart GetCartByUserId(int id)
         {
-            return _context.Carts.Include(c => c.CartProducts).FirstOrDefault(x => x.UserId == id);
+            var cart =  _context.Carts.Include(c => c.CartProducts).OrderByDescending(x => x.CreatedOn).FirstOrDefault(x => x.UserId == id);
+            if (cart != null)
+            {
+                return cart;
+            }
+            else return null;
         }
 
         public void Insert(Cart cart)

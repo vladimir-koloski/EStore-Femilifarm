@@ -1,0 +1,41 @@
+
+<!-- <div class="d-flex flex-row flex-wrap justify-content-between">
+    <div *ngFor="let order of orders" class="card mt-2 mb-2" style="width: 350px;">
+
+        <app-order [order]="order"></app-order>
+
+    </div>
+</div> -->
+
+<div class="card p-2 mb-2">
+    <table class="table table-striped">
+
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Id</th>
+          <th scope="col">Date of Order</th>
+          <th scope="col">Username</th>
+          <th scope="col">Total Products</th>
+          <th scope="col">Total Price</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+
+      <tbody >        
+        <tr *ngFor="let order of orders; index as i">
+          <th scope="row">{{i + 1}}</th>          
+          <td >{{order.id}}</td>
+          <td>{{order.createdOn}}</td>
+          <td>{{order.username}}</td>
+          <td>{{order.products.length}}</td>
+          <td>{{order.totalPrice}} mkd</td>
+          <td>
+              <button class="btn btn-outline-success mr-2" [routerLink]="['order-details/', order.id]"> Open</button>
+          </td>
+            
+        </tr>     
+      </tbody>
+
+    </table>
+  </div>

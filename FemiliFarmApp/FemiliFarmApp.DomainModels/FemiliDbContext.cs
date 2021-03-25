@@ -17,6 +17,7 @@ namespace FemiliFarmApp.DomainModels
         public DbSet<User> Users { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartProduct> CartProduct { get; set; }
+        public DbSet<Order> Orders { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
@@ -42,9 +43,15 @@ namespace FemiliFarmApp.DomainModels
                 .HasKey(u => u.Id);
 
             modelBuilder
+                .Entity<Order>()
+                .ToTable("Orders")
+                .HasKey(x => x.Id);
+
+            modelBuilder
                 .Entity<Cart>()
                 .ToTable("Carts")
                 .HasKey(x => x.Id);
+
 
         }
     }

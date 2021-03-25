@@ -11,7 +11,9 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { AuthGuard } from './auth/aut.guard';
 import { CartComponent } from './components/cart/cart.component';
 import { SellComponent } from './components/sell/sell.component';
-
+import { OrdersComponent} from './components/orders/orders.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 const routes: Routes = [
     {path:'', redirectTo: '/home', pathMatch:'full'},
@@ -22,13 +24,16 @@ const routes: Routes = [
     {path: 'forbidden', component: ForbiddenComponent},
     {path: 'cart', component: CartComponent},
     {path: 'sell', component: SellComponent},
+    {path: 'user-list', component: UserListComponent},
     {path: 'user', component: UserComponent,
     children: [
         {path: 'register', component: RegisterComponent},
         {path: 'login', component: LoginComponent}
-    ]
-
-}
+        ]
+    },
+    {path: 'orders', component: OrdersComponent},
+    {path: 'orders/order-details/:id', component: OrderDetailsComponent}
+    
 
 ]
 

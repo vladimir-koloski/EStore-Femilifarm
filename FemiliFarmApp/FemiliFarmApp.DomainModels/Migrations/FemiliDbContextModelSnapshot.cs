@@ -26,7 +26,7 @@ namespace FemiliFarmApp.DomainModels.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatenOn")
+                    b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -59,6 +59,26 @@ namespace FemiliFarmApp.DomainModels.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("CartProduct");
+                });
+
+            modelBuilder.Entity("FemiliFarmApp.DomainModels.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("FemiliFarmApp.DomainModels.Models.Product", b =>
@@ -142,6 +162,15 @@ namespace FemiliFarmApp.DomainModels.Migrations
                     b.HasOne("FemiliFarmApp.DomainModels.Models.Product", "Product")
                         .WithMany("CartProducts")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FemiliFarmApp.DomainModels.Models.Order", b =>
+                {
+                    b.HasOne("FemiliFarmApp.DomainModels.Models.Cart", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

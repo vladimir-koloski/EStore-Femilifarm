@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Product } from 'src/app/models/product-model';
 import { CartService } from 'src/app/services/cart.service';
+import { OrderService } from 'src/app/services/order.service';
 import { ProductService } from 'src/app/services/product.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Cart, CartRequestModel } from 'src/app/models/cart-model';
 
 @Component({
   selector: 'app-cart',
@@ -11,25 +14,34 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
-  cart: any;
+  modalRef: BsModalRef;
+  cart: Cart;
   price: any;
   productId: number;
   product: Product;
-
+  
+ 
   constructor(private cartService: CartService,
               private productService: ProductService,
               private authService: AuthService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private orderService: OrderService,
+              private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.getUserCart()
     this.activatedRoute.params.subscribe((params: any) => {
-      this.productId = params.id        
-    })    
+      this.productId = params.id     
+    })
+  } 
+
+  openModal(template: TemplateRef<any>, cart) {
+    this.modalRef = this.modalService.show(template);
+    this.createOrder(cart);
   }
 
-  getProductById(){    
+  getProductById(){
     this.productService.getProductById(this.productId).subscribe({
       next: data => this.product = data,
       error: err => console.warn(err.error),
@@ -54,7 +66,7 @@ export class CartComponent implements OnInit {
   calculatePrice() {
     let price = 0;
     this.cart.products.forEach(product => {
-      price += parseInt(product.price)
+      price += product.price
     });
     this.price = price
   }
@@ -68,7 +80,38 @@ export class CartComponent implements OnInit {
     this.cartService.removeProductFromCart(request).subscribe({
       error: err => console.warn(err.error)
     })   
-    this.getUserCart();   
+    this.getUserCart();    
   }
+
+  createOrder(cart){
+    let userId = this.authService.getUserId()
+    let request = {
+      UserId: parseInt(userId),
+      cartId: this.cart.id,
+      products: cart.products
+    }
+    console.log(request)
+    console.log(cart)
+
+    this.orderService.createOrder(request).subscribe({
+      error: err => console.warn(err.error)
+    })  
+    this.createEmptyCart();
+    this.cartService.getUserCartProducts(userId);
+    this.router.navigateByUrl('/products');    
+  }
+
+  createEmptyCart(){
+    let userId = this.authService.getUserId()
+    let request = new CartRequestModel();
+    request = {
+      userId: parseInt(userId),
+      }
+      console.log(request)
+
+    this.cartService.createCart(request).subscribe({
+      error: err => console.warn(err.error)
+    })
+  } 
 
 }

@@ -12,5 +12,9 @@ namespace FemiliFarmApp.Services.Services.Interfaces
         void Register(RegisterModel request);
         User FindByUserName(RegisterModel request);
         User FindByEmail(RegisterModel request);
+        User GetUserById(int id);
+        List<User> GetAll();
+        void Delete(int id);
+        void Update(UserModel request);
     }
 }

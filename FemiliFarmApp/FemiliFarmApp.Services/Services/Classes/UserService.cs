@@ -19,6 +19,7 @@ namespace FemiliFarmApp.Services.Services.Classes
     {
         private readonly IRepository<User> _userRepository;
         private readonly IOptions<JwtSettings> _jwtSettings;
+
         public UserService(IRepository<User> userRepository,
                            IOptions<JwtSettings> jwtSettings)
         {
@@ -91,8 +92,6 @@ namespace FemiliFarmApp.Services.Services.Classes
             _userRepository.Insert(user);
         }
 
-
-
         private string HashPassword(string password)
         {
             var md5 = new MD5CryptoServiceProvider();
@@ -107,6 +106,32 @@ namespace FemiliFarmApp.Services.Services.Classes
         public User FindByEmail(RegisterModel request)
         {
             return _userRepository.GetAll().FirstOrDefault(u => request.Email == u.Email);
+        }
+
+        public User GetUserById(int id)
+        {
+            return _userRepository.GetAll().FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<User> GetAll()
+        {
+            return _userRepository.GetAll().ToList();
+        }
+
+        public void Delete(int id)
+        {
+            var user = GetUserById(id);
+            _userRepository.Remove(user);
+        }
+
+        public void Update(UserModel request)
+        {
+            var user = GetUserById(request.Id);
+            user.FullName = request.FullName;
+            user.UserName = request.Username;
+            user.Email = request.Email;
+            user.Password = request.Password;
+            _userRepository.Update(user);
         }
     }
 }
