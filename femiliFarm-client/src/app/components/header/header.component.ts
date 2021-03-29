@@ -43,7 +43,6 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
 
   ngOnDestroy(): void {
     this.cartService.$products.unsubscribe();
-    this.cartService.$cart.unsubscribe();
   }
 
   getUserCart() {

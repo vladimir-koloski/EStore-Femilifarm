@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         this.userId = res.id
       },
       error: err => {
-        this.message = err.error
+        this.message = "You have entered an invalid username or password";
         this.formModel.reset()
 
       },

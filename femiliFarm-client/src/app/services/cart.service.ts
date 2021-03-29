@@ -41,8 +41,6 @@ export class CartService {
   getUserCart(userId: number): Observable<Cart> {
     let url = `${this.serverUrl}/api/Cart/GetCart?UserId=${userId}`;
     return this.http.get<Cart>(url);
-    this.$cart.next(this.cart);
-
   }
 
   getUserCartProducts(userId: number) {

@@ -1,4 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Cart } from 'src/app/models/cart-model';
 import { Product } from 'src/app/models/product-model';
@@ -14,28 +16,33 @@ export class ProductsComponent implements OnInit {
 
   products: Product[];
   cart: Cart;
+  //notifier = new Subject();
 
   constructor(private productService: ProductService,
     private authService: AuthService,
     private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.getUserCart();
+    //this.getUserCart();
     this.getAllProducts();
     this.cartService.$products.subscribe(products => {
       this.cart.products = products;
     })
-    console.log(this.products);
+    // console.log(this.products);
+        // let userId = this.authService.getUserId();
+        // this.cartService.getUserCart(userId).pipe(takeUntil(this.notifier))
+        // .subscribe(x => console.log(x));
   }
-
-  // ngOnDestroy(): void{
+    
+   ngOnDestroy(): void{
   //   this.cartService.$products.unsubscribe();
-  // }
+        // this.cartService.$products.next();
+        // this.cartService.$products.complete();
+   }
 
   getUserCart() {
-    let userId = this.authService.getUserId()
-    this.cartService.getUserCartProducts(userId);
-    
+    let userId = this.authService.getUserId();
+    this.cartService.getUserCartProducts(userId);    
   }
 
   getAllProducts() {
