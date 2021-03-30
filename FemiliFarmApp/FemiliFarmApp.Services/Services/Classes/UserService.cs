@@ -126,11 +126,12 @@ namespace FemiliFarmApp.Services.Services.Classes
 
         public void Update(UserModel request)
         {
+            var hashedPassword = HashPassword(request.Password);
             var user = GetUserById(request.Id);
             user.FullName = request.FullName;
             user.UserName = request.Username;
             user.Email = request.Email;
-            user.Password = request.Password;
+            user.Password = hashedPassword;
             _userRepository.Update(user);
         }
     }

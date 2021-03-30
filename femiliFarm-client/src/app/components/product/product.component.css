@@ -2,3 +2,6 @@
     display: flex;
     justify-content: space-between;
 }
+.card-img-top{
+    max-height: 270px;
+}
